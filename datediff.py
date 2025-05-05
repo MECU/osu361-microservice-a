@@ -2,17 +2,7 @@ import csv
 from datetime import date, datetime
 from dateutil.relativedelta import relativedelta
 from dateutil.parser import parse
-import time
 import json
-
-
-# Need: pip install python-dateutil
-print('********************************************************************************')
-print('Starting DateDiff microservice')
-print('CTRL-C to stop')
-print('********************************************************************************')
-
-distance_date = False
 
 class DateDiff:
     INPUT_FILE = 'rundifference.csv'
@@ -38,9 +28,8 @@ class DateDiff:
 
     # d2 is a string
     # return {days: <days>, months: <months>, years: <years>}
-    def today_diff(d2):
-        today = datetime.today()
-        d0 = parse(distance_date, dayfirst=True, yearfirst=True)
+    def today_diff(dd, today = datetime.today()):
+        d0 = parse(dd, dayfirst=False, yearfirst=True)
 
         delta = today - d0
         difference = relativedelta(today, d0)
@@ -60,17 +49,3 @@ class DateDiff:
                 json.dump(calc, o, ensure_ascii=False, indent=4)
             finally:
                 o.close()
-
-while (True):
-    while (not distance_date):
-        distance_date = DateDiff.read_file()
-        print('Nothing to do - sleeping')
-        time.sleep(1)
-
-    print('Time to work!')
-    calc = DateDiff.today_diff(distance_date)
-    distance_date = False
-
-    DateDiff.write_response(calc)
-
-
