@@ -28,11 +28,3 @@ class TestDateDiff:
             f.close
 
         assert datediff.DateDiff.read_file() == False
-
-        self.delete_input_file()
-
-    def delete_input_file(self):
-        pathlib.Path(datediff.DateDiff.INPUT_FILE).unlink(missing_ok=True)
-
-    def delete_output_file(self):
-        pathlib.Path(datediff.DateDiff.OUTPUT_FILE).unlink(missing_ok=True)
