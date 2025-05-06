@@ -20,10 +20,11 @@ The microservice will blank this file after running.
 In file `datadifference.json`
 ```json
 {
-    "days": Integer,
-    "months": Integer,
-    "years": Integer
+    "days": <Integer>,
+    "months": <Integer>,
+    "years": <Integer>
 }
+```
 
 Negative values are possible and represent a date in the future from today.
 
