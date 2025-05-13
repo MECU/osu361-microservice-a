@@ -26,7 +26,7 @@ class DateDiff:
             return False
 
 
-    # d2 is a string
+    # dd is a string
     # return {days: <days>, months: <months>, years: <years>}
     def today_diff(dd, today = datetime.today()):
         d0 = parse(dd, dayfirst=False, yearfirst=True)
