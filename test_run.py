@@ -1,6 +1,7 @@
 import datediff
 import pathlib
 from dateutil.parser import parse
+import json
 
 # Run cmd: python3 -m pytest
 
@@ -28,3 +29,24 @@ class TestDateDiff:
             f.close
 
         assert datediff.DateDiff.read_file() == False
+
+    def test_full(self):
+        # Create the input file with the right command
+        with open(datediff.DateDiff.INPUT_FILE, 'w') as f:
+            f.write('run,2000-05-05')
+            f.close
+
+        # Simulate the service running via commands
+        distance_date = datediff.DateDiff.read_file()
+        calc = datediff.DateDiff.today_diff(distance_date)
+        datediff.DateDiff.write_response(calc)
+
+        # Look for output file to have the right data
+        with open(datediff.DateDiff.OUTPUT_FILE, "r+") as f:
+            data = json.load(f)
+
+        # Difficult to test exact values because we don't know what "today" is
+        # But safe to assume the file starts empty so if we populated a dict with numbers, we're good
+        assert data['days'] > 1
+        assert data['months'] > 1
+        assert data['years'] > 1
