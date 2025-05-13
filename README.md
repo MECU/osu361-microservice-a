@@ -30,3 +30,6 @@ Negative values are possible and represent a date in the future from today.
 
 The values are not additive. The date difference is not the sum of years, months, days.
 Each value is the total difference in itself. All values are truncated (not rounded).
+
+### UML Diagram
+![UML Diagram](Microservice_UML.png)
