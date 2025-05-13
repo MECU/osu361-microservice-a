@@ -31,6 +31,13 @@ class TestDateDiff:
         assert datediff.DateDiff.read_file() == False
 
     def test_full(self):
+        # Blank the output file
+
+        with open(datediff.DateDiff.OUTPUT_FILE, "w") as f:
+            f.seek(0)
+            f.truncate()
+            f.close()
+
         # Create the input file with the right command
         with open(datediff.DateDiff.INPUT_FILE, 'w') as f:
             f.write('run,2000-05-05')
