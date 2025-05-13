@@ -1,6 +1,9 @@
 ## Description
 Microservice "A" to perform date difference calculations between today and the date provided.
 
+## Run
+Run the microservice via: `python3 run.py`. CTRL-C to stop.
+
 ## Tests
 ```python
 python3 -m pytest
